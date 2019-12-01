@@ -1,22 +1,48 @@
 package guru.springframework.bootstrap;
 
 import guru.springframework.domain.Category;
+import guru.springframework.domain.Customer;
 import guru.springframework.repositories.CategoryRepository;
+import guru.springframework.repositories.CustomerRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class Bootstrap implements CommandLineRunner {
     private final CategoryRepository categoryRespository;
+    private final CustomerRepository customerRepository;
 
-
-    public Bootstrap(CategoryRepository categoryRespository) {
+    public Bootstrap(CategoryRepository categoryRespository, CustomerRepository customerRepository) {
         this.categoryRespository = categoryRespository;
+        this.customerRepository = customerRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
         loadCategories();
+        loadCustomers();
+    }
+
+    private void loadCustomers() {
+        System.out.println("##### Loading Customers #####");
+        log.debug("##### Loading Customers #####");
+        Customer customer1 = new Customer();
+        customer1.setId(1l);
+        customer1.setFirstname("Michale");
+        customer1.setLastname("Weston");
+        customerRepository.save(customer1);
+
+        Customer customer2 = new Customer();
+        customer2.setId(2l);
+        customer2.setFirstname("Sam");
+        customer2.setLastname("Axe");
+
+        customerRepository.save(customer2);
+
+        System.out.println("Customers Loaded: " + customerRepository.count());
+        log.debug("Customers Loaded: " + customerRepository.count());
     }
 
     private void loadCategories() {
