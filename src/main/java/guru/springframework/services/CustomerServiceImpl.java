@@ -43,21 +43,43 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDTO createNewCustomer(CustomerDTO customerDTO) {
-        return null;
+        Customer customer = customerMapper.customerDTOtoCustomer(customerDTO);
+
+        Customer customerSaved = customerRepository.save(customer);
+        return customerMapper.customerToCustomerDTO(customerSaved);
     }
 
     @Override
     public CustomerDTO saveCustomerByDTO(Long id, CustomerDTO customerDTO) {
-        return null;
+        Customer customer = customerMapper.customerDTOtoCustomer(customerDTO);
+        customer.setId(id);
+
+        Customer customerSaved = customerRepository.save(customer);
+        CustomerDTO customerDTOSaved = customerMapper.customerToCustomerDTO(customerSaved);
+
+        return customerDTOSaved;
     }
 
     @Override
     public CustomerDTO patchCustomer(Long id, CustomerDTO customerDTO) {
+        customerRepository.findById(id)
+                .map(customer -> {
+                    if(customerDTO.getFirstname() != null) {
+                        customer.setFirstname(customerDTO.getFirstname());
+                    }
+
+                    if(customerDTO.getLastname() != null) {
+                        customer.setLastname(customerDTO.getLastname());
+                    }
+                    Customer customerSaved = customerRepository.save(customer);
+                    return customerMapper.customerToCustomerDTO(customerSaved);
+                })
+                .orElseThrow(null);
         return null;
     }
 
     @Override
     public void deleteCustomerById(Long id) {
-
+        customerRepository.deleteById(id);
     }
 }
