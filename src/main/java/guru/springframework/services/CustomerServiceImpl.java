@@ -35,10 +35,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO getCustomerById(Long id) {
         Optional<Customer> customer = customerRepository.findById(id);
-        if(customer != null) {
+        if(customer.isPresent()) {
             return customerMapper.customerToCustomerDTO(customer.get()) ;
+        } else {
+            throw new ResourceNotFoundException();
         }
-        return null;
     }
 
     @Override
@@ -74,7 +75,7 @@ public class CustomerServiceImpl implements CustomerService {
                     Customer customerSaved = customerRepository.save(customer);
                     return customerMapper.customerToCustomerDTO(customerSaved);
                 })
-                .orElseThrow(null);
+                .orElseThrow(ResourceNotFoundException::new);
         return null;
     }
 
