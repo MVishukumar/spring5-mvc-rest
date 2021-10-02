@@ -3,9 +3,11 @@ This repository contains example for building REST Web Services using Spring Fra
 
 The application mimics the web service available at [https://api.predic8.de/shop/docs](https://api.predic8.de/shop/docs)
 
-# Location of Swagger UI
-* [Swagger UI JSON response path](/v2/api-docs)
-* [Swagger UI HTML Page](/swagger-ui.html)
+# Swagger UI
+| Content | PATH |
+| ------ | ------ |
+| Swagger UI JSON Response | [/api-docs] |
+| Swagger UI HTML Page | [/swagger-ui.html] |
 
 # Getting Started
 
