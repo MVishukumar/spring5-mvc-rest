@@ -28,8 +28,8 @@ public class SwaggerConfig {
     }
 
     private ApiInfo metaData() {
-        Contact contact = new Contact("Vishukumar M", "",
-                "beingvishu@gmail.com");
+        Contact contact = new Contact("Vishukumar M", "https://github.com/MVishukumar/", "beingvishu@protonmail.com");
+
 
         return new ApiInfo(
                 "Spring Framework REST",
