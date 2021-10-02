@@ -6,8 +6,8 @@ The application mimics the web service available at [https://api.predic8.de/shop
 # Swagger UI
 | Content | PATH |
 | ------ | ------ |
-| Swagger UI JSON Response | [/api-docs] |
-| Swagger UI HTML Page | [/swagger-ui.html] |
+| Swagger UI JSON Response | /api-docs |
+| Swagger UI HTML Page | /swagger-ui.html |
 
 # Getting Started
 
